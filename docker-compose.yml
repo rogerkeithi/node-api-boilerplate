@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:8
+    container_name: mongo_db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo_data:/data/db
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    restart: always
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - DEBUG=1
+    volumes:
+      - localstack_data:/var/lib/localstack
+
+  user-service:
+    build: ./user-service
+    container_name: user_service
+    restart: always
+    depends_on:
+      - mongo
+      - localstack
+    environment:
+      MONGO_URI: mongodb://admin:password@mongo_db:27017/userdb?authSource=admin
+      AWS_SQS_URL: http://localstack:4566/000000000000/user-queue
+      AWS_REGION: us-east-1
+    ports:
+      - "4002:4000"
+
+  gateway:
+    build: ./gateway
+    container_name: api_gateway
+    restart: always
+    depends_on:
+      - user-service
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo_data:
+  localstack_data:
