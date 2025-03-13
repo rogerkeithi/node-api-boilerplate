@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "outDir": "dist", 
+      "module": "CommonJS",
+      "target": "ES2022",
+      "strict": true,
+      "rootDir": "src",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true
+    },
+    "include": ["src", "server.ts"]
+  }

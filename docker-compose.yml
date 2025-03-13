@@ -29,7 +29,7 @@ services:
       - localstack_data:/var/lib/localstack
 
   user-service:
-    build: ./user-service
+    build: ./services/user-service
     container_name: user_service
     restart: always
     depends_on:
@@ -40,16 +40,7 @@ services:
       AWS_SQS_URL: http://localstack:4566/000000000000/user-queue
       AWS_REGION: us-east-1
     ports:
-      - "4002:4000"
-
-  gateway:
-    build: ./gateway
-    container_name: api_gateway
-    restart: always
-    depends_on:
-      - user-service
-    ports:
-      - "3000:3000"
+      - "4003:4002"
 
 volumes:
   mongo_data:

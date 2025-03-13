@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "tsc",
-    "serve": "node dist/server.js"
+    "prod": "node dist/server.js"
   },
   "author": "Roger Keithi",
   "license": "ISC",

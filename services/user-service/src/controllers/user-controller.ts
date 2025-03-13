@@ -10,7 +10,7 @@ export class UserController {
       const user = await this.createUserUseCase.execute();
       return res.status(201).json(user);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      return res.status(400).json({ error: 'error.message' });
     }
   }
 }

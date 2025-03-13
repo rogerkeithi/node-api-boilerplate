@@ -1,7 +1,7 @@
-# Use Node.js official image
-FROM node:18
+# Use the official Node.js image as the base
+FROM node:20-alpine
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json
@@ -10,11 +10,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
+# Copy the entire project
 COPY . .
 
-# Expose the port your API runs on
-EXPOSE 3000
+# Build the TypeScript project
+RUN npm run build
 
-# Run the application
-CMD ["npm", "start"]
+# Expose the application port (change if necessary)
+EXPOSE 4002
+
+# Start the application (use `node dist/index.js` if build output is in dist/)
+CMD ["node", "dist/server.js"]
