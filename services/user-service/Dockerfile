@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the application port (change if necessary)
-EXPOSE 4002
+EXPOSE 4000
 
 # Start the application (use `node dist/index.js` if build output is in dist/)
 CMD ["node", "dist/server.js"]
