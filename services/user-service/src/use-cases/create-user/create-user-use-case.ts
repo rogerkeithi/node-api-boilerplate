@@ -8,7 +8,7 @@ import { UserMapper } from "../../entities/user/user-mapper";
 export class CreateUserUseCase {
     constructor(@inject("IUserRepository") private userRepository: IUserRepository){}
 	async execute(data: CreateUserReq): Promise<CreateUserRes> {
-		const existingUser = await this.userRepository.findByEmail(data.email);
+		const existingUser = await this.userRepository.findOneByFilter({email: data.email});
 		if (existingUser) {
 		  throw new Error("E-mail já está em uso.");
 		}

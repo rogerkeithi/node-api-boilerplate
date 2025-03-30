@@ -13,18 +13,6 @@ services:
     volumes:
       - mongo_user_data:/data/db
 
-  # mongo-order:
-  #   image: mongo:8
-  #   container_name: mongo_order_db
-  #   restart: always
-  #   ports:
-  #     - "27019:27017"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: admin
-  #     MONGO_INITDB_ROOT_PASSWORD: password
-  #   volumes:
-  #     - mongo_order_data:/data/db
-
   localstack:
     image: localstack/localstack:latest
     container_name: localstack
@@ -51,10 +39,10 @@ services:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
       AWS_SQS_URL: http://localstack:4566/000000000000/user-queue
       AWS_REGION: us-east-1
+      PORT: 4000
     ports:
       - "4001:4000"
 
 volumes:
   mongo_user_data:
-  # mongo_order_data:
   localstack_data:

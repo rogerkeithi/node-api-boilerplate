@@ -1,5 +1,5 @@
 import { User } from "../../entities/user/user";
-import { IUserRepository } from "../../infra/repositories/interfaces/user-repository-interface";
+import { IUserReadRepository } from "../../infra/repositories/interfaces/user-repository-interface";
 import { inject, injectable } from "inversify";
 import { FindUserReq, FindUserRes } from "./find-user-dto";
 import { UserDocument } from "../../infra/models/user-model";
@@ -7,15 +7,15 @@ import { UserMapper } from "../../entities/user/user-mapper";
 
 @injectable()
 export class FindUserUseCase {
-    constructor(@inject("IUserRepository") private userRepository: IUserRepository){}
+    constructor(@inject("IUserReadRepository") private userReadRepository: IUserReadRepository){}
 	async execute(data: FindUserReq): Promise<FindUserRes> {
 		let userDocument: UserDocument | null = null;
-		if(data.email){
-			userDocument = await this.userRepository.findByEmail(data.email);
-		}
-		if(data.id){
-			userDocument = await this.userRepository.findById(data.id);
-		}
+		
+		const filter: Record<string, string> = {};
+		if (data.id) filter._id = data.id;
+		if (data.email) filter.email = data.email;
+
+		userDocument = await this.userReadRepository.findOneByFilter(filter);
 		if(!userDocument) {
 			throw new Error('Usuario nao encontrado.')
 		}else{
@@ -23,7 +23,7 @@ export class FindUserUseCase {
 				userDocument.name,
 				userDocument.email,
 				userDocument.password,
-				userDocument.id, 
+				userDocument.id,
 				userDocument.createdAt, 
 				userDocument.updatedAt
 			  );
