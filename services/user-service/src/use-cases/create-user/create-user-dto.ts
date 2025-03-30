@@ -1,11 +1,17 @@
-export class CreateUserReq {
-    name: string;
-    email: string;
-    password: string;
+import { User } from "../../entities/user/user";
+import { CreateUserSchema, CreateUserSchemaDTO } from "./create-user-schema";
 
-    constructor(name: string, email: string, password: string) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+export class CreateUserReq {
+  name: string;
+  email: string;
+  password: string;
+
+  constructor(data: CreateUserSchemaDTO) {
+    const parsedData = CreateUserSchema.parse(data);
+    this.name = parsedData.name;
+    this.email = parsedData.email;
+    this.password = parsedData.password;
+  }
 }
+
+export type CreateUserRes = Omit<User, 'password'>

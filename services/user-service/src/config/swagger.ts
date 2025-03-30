@@ -4,17 +4,17 @@ const swaggerOptions: Options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "My API",
+      title: "User service",
       version: "1.0.0",
-      description: "API documentation",
+      description: "Microsservice documentation",
     },
     servers: [
       {
-        url: "http://localhost:4003", // Change this to match your API's base URL
+        url: "http://localhost:4001/api",
       },
     ],
   },
-  apis: ["../routes/*.ts"], // Point to where your API routes are defined
+  apis: ["./src/routes/*.ts"],
 };
 
 export default swaggerOptions;
