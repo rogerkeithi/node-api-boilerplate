@@ -43,6 +43,21 @@ services:
     ports:
       - "4001:4000"
 
+  auth-service:
+    build: ./services/auth-service
+    container_name: auth_service
+    restart: always
+    depends_on:
+      - mongo-user
+      - localstack
+    environment:
+      MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
+      AWS_SQS_URL: http://localstack:4566/000000000000/auth-queue
+      AWS_REGION: us-east-1
+      PORT: 4000
+    ports:
+      - "4002:4000"  
+
 volumes:
   mongo_user_data:
   localstack_data:

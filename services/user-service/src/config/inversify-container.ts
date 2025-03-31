@@ -1,5 +1,5 @@
 import { Container } from "inversify";
-import { IUserRepository } from "../infra/repositories/interfaces/user-repository-interface";
+import { IUserReadRepository, IUserRepository } from "../infra/repositories/interfaces/user-repository-interface";
 import { UserRepository } from "../infra/repositories/user-repository";
 import { CreateUserUseCase } from "../use-cases/create-user/create-user-use-case";
 import CreateUserController from "../controllers/create-user-controller";
@@ -20,6 +20,7 @@ container.bind<FindUserUseCase>(FindUserUseCase).toSelf();
 
 //Repositories
 container.bind<IUserRepository>("IUserRepository").to(UserRepository);
+container.bind<IUserReadRepository>("IUserReadRepository").to(UserRepository);
 
 //Database
 container.bind<IDatabase>("IDatabase").to(MongoDatabase);
