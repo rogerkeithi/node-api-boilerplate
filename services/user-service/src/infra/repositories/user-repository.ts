@@ -7,6 +7,7 @@ export class UserRepository implements IUserRepository  {
     const userDocument = new userModel({
       name: user.name,
       email: user.email,
+      role: user.role,
       password: user.password,
     });
     return await userDocument.save();

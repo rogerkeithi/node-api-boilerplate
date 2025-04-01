@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CreateUserReq } from "../use-cases/create-user/create-user-dto";
 import { BaseController } from "./base/base-controller";
-import { HttpStatus } from "../config/http-status";
+import { HttpStatus } from "../enums/http-status-enum";
 import { inject, injectable } from "inversify";
 import { FindUserUseCase } from "../use-cases/find-user/find-user-use-case";
 import { FindUserReq } from "../use-cases/find-user/find-user-dto";

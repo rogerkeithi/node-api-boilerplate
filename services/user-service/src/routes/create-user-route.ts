@@ -24,6 +24,13 @@ const createUserController = container.get<CreateUserController>(CreateUserContr
  *               email:
  *                 type: string
  *                 example: "joao.silva@email.com"
+ *               role:
+ *                 type: string
+ *                 enum:
+ *                   - "USER"
+ *                   - "ADMIN"
+ *                   - "MODERATOR"
+ *                 example: "USER"
  *               password:
  *                 type: string
  *                 example: "******"

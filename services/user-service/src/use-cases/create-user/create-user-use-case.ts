@@ -12,11 +12,12 @@ export class CreateUserUseCase {
 		if (existingUser) {
 		  throw new Error("E-mail já está em uso.");
 		}
-		const userToCreate = new User(data.name, data.email, data.password);
+		const userToCreate = new User(data.name, data.email, data.role, data.password);
 		const userDocument = await this.userRepository.create(userToCreate);
 		const user = new User(
 			userDocument.name,
 			userDocument.email,
+			userDocument.role,
 			userDocument.password,
 			userDocument.id, 
 			userDocument.createdAt, 

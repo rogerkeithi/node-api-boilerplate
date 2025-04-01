@@ -1,9 +1,11 @@
 import { z } from "zod";
+import { Roles } from "../../enums/role-enum";
 
 export const CreateUserSchema = z.object({
-  name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres."),
-  email: z.string().email("E-mail inválido."),
-  password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres."),
+  name: z.string().min(3, "Name must be at least 3 characters long"),
+  email: z.string().email("Invalid e-mail"),
+  role: z.enum([Roles.USER, Roles.ADMIN, Roles.MODERATOR]),
+  password: z.string().min(6, "Password must be at least 3 characters long."),
 });
 
 export type CreateUserSchemaDTO = z.infer<typeof CreateUserSchema>;

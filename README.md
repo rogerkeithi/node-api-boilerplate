@@ -27,3 +27,11 @@ On that project, we're using docker compose to run our stack locally, so you hav
   docker compose up --build
 ```
 Running thais command will rebuild and start all services in our project. 
+
+### Swagger
+
+To access swagger pages of each microservice, just enter 'api-docs' on the URL service.
+
+Example (Running locally):
+- http://localhost:4001/api-docs/ = user service
+- http://localhost:4002/api-docs/ = auth service

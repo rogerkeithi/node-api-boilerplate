@@ -22,6 +22,7 @@ export class FindUserUseCase {
 			const user = new User(
 				userDocument.name,
 				userDocument.email,
+				userDocument.role,
 				userDocument.password,
 				userDocument.id,
 				userDocument.createdAt, 

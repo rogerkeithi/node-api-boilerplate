@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mongo-user:
     image: mongo:8
@@ -48,7 +46,6 @@ services:
         condition: service_started
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
-      AWS_SQS_URL: http://localstack:4566/000000000000/user-queue
       AWS_REGION: us-east-1
       PORT: 4000
     ports:
@@ -63,7 +60,7 @@ services:
         condition: service_healthy
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
-      AWS_SQS_URL: http://localstack:4566/000000000000/auth-queue
+      AWS_USER_SQS: http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/user-queue
       AWS_REGION: us-east-1
       PORT: 4000
     ports:
