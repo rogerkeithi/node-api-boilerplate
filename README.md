@@ -1,6 +1,6 @@
 # Node API boilerplate
 
-This is a boilerplate for building a Node.js application structured in microservices, following the Clean Architecture pattern and the practices of Clean Code and SOLID.
+This is a boilerplate for building a TypeScript-based Node.js application structured in microservices, following the Clean Architecture pattern and the practices of Clean Code and SOLID.
 
 
 ## Running Locally 
