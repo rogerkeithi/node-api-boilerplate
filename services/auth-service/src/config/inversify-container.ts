@@ -1,6 +1,4 @@
 import { Container } from "inversify";
-import { IDatabase } from "../infra/config/interfaces/database-interface";
-import { MongoDatabase } from "../infra/config/mongo-conn";
 
 const container = new Container();
 
@@ -11,6 +9,5 @@ const container = new Container();
 //Repositories
 
 //Database
-container.bind<IDatabase>("IDatabase").to(MongoDatabase);
 
 export { container };

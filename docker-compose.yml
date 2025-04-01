@@ -20,21 +20,32 @@ services:
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=sqs
+      - SERVICES=sqs,s3
+      - PERSISTENCE=1
       - DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
       - DEBUG=1
     volumes:
       - localstack_data:/var/lib/localstack
+      - ./localstack-bootstrap:/etc/localstack/init/ready.d/
+    healthcheck:
+      test: >-
+        curl -sf localhost:4566/_localstack/init/ready | grep -q '"completed": true,'
+      interval: 1m
+      timeout: 5s
+      start_period: 1m
+      retries: 5
 
   user-service:
     build: ./services/user-service
     container_name: user_service
     restart: always
     depends_on:
-      - mongo-user
-      - localstack
+      localstack:
+        condition: service_healthy
+      mongo-user:
+        condition: service_started
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
       AWS_SQS_URL: http://localstack:4566/000000000000/user-queue
@@ -48,8 +59,8 @@ services:
     container_name: auth_service
     restart: always
     depends_on:
-      - mongo-user
-      - localstack
+      localstack:
+        condition: service_healthy
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
       AWS_SQS_URL: http://localstack:4566/000000000000/auth-queue
