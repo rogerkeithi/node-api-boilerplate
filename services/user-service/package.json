@@ -24,6 +24,7 @@
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.777.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "inversify": "^7.2.0",
     "jsonwebtoken": "^9.0.2",

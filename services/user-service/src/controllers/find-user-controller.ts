@@ -13,6 +13,8 @@ export default class FindUserController extends BaseController {
   async execute(req: Request, res: Response): Promise<Response> {
     try {
       const findUserReq = new FindUserReq(req.query);
+      const { "x-timestamp": timestamp, "x-signature": receivedSignature } = req.headers;
+      findUserReq.setSignature(timestamp, receivedSignature)
       const user = await this.findUserUseCase.execute(findUserReq);
       return this.success(res, user, HttpStatus.OK);
     } catch (error) {
