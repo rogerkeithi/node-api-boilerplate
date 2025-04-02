@@ -7,7 +7,7 @@ import swaggerOptions from './config/swagger';
 import swaggerUi from 'swagger-ui-express';
 import createUserRoute from './routes/create-user-route';
 import findUserRoute from "./routes/find-user-route";
-import { IDatabase } from "./infra/config/interfaces/database-interface";
+import { IDatabase } from "./infra/database/config/interfaces/database-interface";
 import { container } from "./config/inversify-container";
 
 dotenv.config();

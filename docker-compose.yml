@@ -46,7 +46,12 @@ services:
         condition: service_started
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
+      AWS_SQS_ENDPOINT: http://localstack:4566
+      AWS_WORKER_QUEUE: http://localstack:4566/000000000000/user-queue
+      AWS_AUTH_SQS: http://localstack:4566/000000000000/auth-queue
       AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
       PORT: 4000
     ports:
       - "4001:4000"
@@ -60,8 +65,12 @@ services:
         condition: service_healthy
     environment:
       MONGO_URI: mongodb://admin:password@mongo_user_db:27017/userdb?authSource=admin
-      AWS_USER_SQS: http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/user-queue
+      AWS_SQS_ENDPOINT: http://localstack:4566
+      AWS_WORKER_QUEUE: http://localstack:4566/000000000000/auth-queue
+      AWS_USER_SQS: http://localstack:4566/000000000000/user-queue
       AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
       PORT: 4000
     ports:
       - "4002:4000"  

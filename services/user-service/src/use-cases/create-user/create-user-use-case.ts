@@ -1,6 +1,6 @@
 import { CreateUserReq, CreateUserRes } from "./create-user-dto";
 import { User } from "../../entities/user/user";
-import { IUserRepository } from "../../infra/repositories/interfaces/user-repository-interface";
+import { IUserRepository } from "../../infra/database/repositories/interfaces/user-repository-interface";
 import { inject, injectable } from "inversify";
 import { UserMapper } from "../../entities/user/user-mapper";
 

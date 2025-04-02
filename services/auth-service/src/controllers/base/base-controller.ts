@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { HttpStatus } from "../../config/http-status";
+import { HttpStatus } from "../../enums/http-status";
 import { ZodError } from "zod";
 
 export abstract class BaseController {

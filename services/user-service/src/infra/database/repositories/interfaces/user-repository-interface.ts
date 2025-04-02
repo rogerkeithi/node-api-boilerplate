@@ -1,4 +1,4 @@
-import { User } from "../../../entities/user/user";
+import { User } from "../../../../entities/user/user";
 import { UserDocument } from "../../models/user-model";
 
 export interface IUserRepository extends IUserReadRepository, IUserWriteRepository{}

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { CreateUserReq } from "../use-cases/create-user/create-user-dto";
 import { BaseController } from "./base/base-controller";
 import { HttpStatus } from "../enums/http-status-enum";
 import { inject, injectable } from "inversify";

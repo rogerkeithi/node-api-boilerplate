@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["node", "dist/server.js"]
+CMD ["sh", "-c", "node dist/server.js & node dist/worker.js"]

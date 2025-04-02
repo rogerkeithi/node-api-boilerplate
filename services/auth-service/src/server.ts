@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerOptions from './config/swagger';
 import swaggerUi from 'swagger-ui-express';
+import loginRoute from "./routes/login-route";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ const startServer = async () => {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     app.use(cors());
     app.use(express.json());
+    app.use('/api', loginRoute);
     app.listen(port, () => {
       console.log(`Server running!`);
     });

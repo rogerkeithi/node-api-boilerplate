@@ -1,8 +1,8 @@
 import { User } from "../../entities/user/user";
-import { IUserReadRepository } from "../../infra/repositories/interfaces/user-repository-interface";
+import { IUserReadRepository } from "../../infra/database/repositories/interfaces/user-repository-interface";
 import { inject, injectable } from "inversify";
 import { FindUserReq, FindUserRes } from "./find-user-dto";
-import { UserDocument } from "../../infra/models/user-model";
+import { UserDocument } from "../../infra/database/models/user-model";
 import { UserMapper } from "../../entities/user/user-mapper";
 
 @injectable()
