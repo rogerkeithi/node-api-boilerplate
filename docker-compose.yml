@@ -57,6 +57,8 @@ services:
       AWS_REGION: us-east-1
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
+      JWT_SECRET: jwt-secret
+      SALT_ROUNDS: 10
       PORT: 4000
     ports:
       - "4001:4000"
@@ -82,6 +84,8 @@ services:
       AWS_REGION: us-east-1
       AWS_ACCESS_KEY_ID: test
       AWS_SECRET_ACCESS_KEY: test
+      JWT_SECRET: jwt-secret
+      SALT_ROUNDS: 10
       PORT: 4000
     ports:
       - "4002:4000"

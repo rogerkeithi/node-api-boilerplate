@@ -1,5 +1,5 @@
 import express from "express";
-import { asyncWrapper } from "../config/async-wrapper";
+import { asyncWrapper } from "../utils/async-wrapper";
 import { container } from "../config/inversify-container";
 import FindUserController from "../controllers/find-user-controller";
 

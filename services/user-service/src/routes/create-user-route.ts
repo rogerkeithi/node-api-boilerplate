@@ -1,6 +1,6 @@
 import express from "express";
 import CreateUserController from "../controllers/create-user-controller";
-import { asyncWrapper } from "../config/async-wrapper";
+import { asyncWrapper } from "../utils/async-wrapper";
 import { container } from "../config/inversify-container";
 
 const createUserRoute = express.Router();

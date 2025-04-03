@@ -3,6 +3,7 @@ import { User } from "../../entities/user/user";
 import { IUserRepository } from "../../infra/database/repositories/interfaces/user-repository-interface";
 import { inject, injectable } from "inversify";
 import { UserMapper } from "../../entities/user/user-mapper";
+import { hashPassword } from "../../utils/hash-handler";
 
 @injectable()
 export class CreateUserUseCase {
@@ -12,7 +13,8 @@ export class CreateUserUseCase {
 		if (existingUser) {
 		  throw new Error("E-mail já está em uso.");
 		}
-		const userToCreate = new User(data.name, data.email, data.role, data.password);
+		const hashed = await hashPassword(data.password);
+		const userToCreate = new User(data.name, data.email, data.role, hashed);
 		const userDocument = await this.userRepository.create(userToCreate);
 		const user = new User(
 			userDocument.name,

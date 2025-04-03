@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 import { FindUserReq, FindUserRes } from "./find-user-dto";
 import { UserDocument } from "../../infra/database/models/user-model";
 import { UserMapper } from "../../entities/user/user-mapper";
-import { generateSignature } from "../../config/generate-signature";
+import { generateSignature } from "../../utils/generate-signature";
 
 @injectable()
 export class FindUserUseCase {
