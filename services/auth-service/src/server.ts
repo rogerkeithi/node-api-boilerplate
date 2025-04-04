@@ -21,7 +21,7 @@ const startServer = async () => {
       console.log(`Server running!`);
     });
   } catch (error) {
-    console.error('Erro ao iniciar o servidor:', error);
+    console.error('Error trying to init server:', error);
   }
 };
 

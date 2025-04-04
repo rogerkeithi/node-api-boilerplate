@@ -1,5 +1,5 @@
+import { Roles } from "@rk-org/shared";
 import { Schema, model, Document } from "mongoose";
-import { Roles } from "../../../enums/role-enum";
 
 export interface UserDocument extends Document {
   id: string;

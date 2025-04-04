@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "inversify";
-import { BaseController } from "./base/base-controller";
 import { LoginUseCase } from "../use-cases/login/login-use-case";
 import { LoginReq } from "../use-cases/login/login-dto";
-import { HttpStatus } from "../enums/http-status";
+import { BaseController, HttpStatus } from "@rk-org/shared";
 @injectable()
 export default class LoginController extends BaseController {
   constructor(@inject(LoginUseCase) private loginUseCase: LoginUseCase) {

@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { CreateUserUseCase } from "../use-cases/create-user/create-user-use-case";
 import { CreateUserReq } from "../use-cases/create-user/create-user-dto";
-import { BaseController } from "./base/base-controller";
-import { HttpStatus } from "../enums/http-status-enum";
 import { inject, injectable } from "inversify";
+import { BaseController, HttpStatus } from "@rk-org/shared";
 @injectable()
 export default class CreateUserController extends BaseController {
   constructor(@inject(CreateUserUseCase) private createUserUseCase: CreateUserUseCase) {

@@ -1,4 +1,4 @@
-import { Roles } from "../../enums/role-enum";
+import { Roles } from "@rk-org/shared";
 export class User {
   public id?: string;
   public name: string;

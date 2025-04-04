@@ -40,7 +40,9 @@ services:
       - main-network
 
   user-service:
-    build: ./services/user-service
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile-user
     container_name: user_service
     restart: always
     depends_on:
@@ -66,7 +68,9 @@ services:
       - main-network
 
   auth-service:
-    build: ./services/auth-service
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile-auth
     container_name: auth_service
     restart: always
     depends_on:

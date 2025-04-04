@@ -1,5 +1,6 @@
+
+import { Roles } from "@rk-org/shared";
 import { User } from "../../entities/user/user";
-import { Roles } from "../../enums/role-enum";
 import { CreateUserSchema, CreateUserSchemaDTO } from "./create-user-schema";
 
 export class CreateUserReq {

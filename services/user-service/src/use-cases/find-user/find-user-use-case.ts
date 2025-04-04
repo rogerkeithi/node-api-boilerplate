@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 import { FindUserReq, FindUserRes } from "./find-user-dto";
 import { UserDocument } from "../../infra/database/models/user-model";
 import { UserMapper } from "../../entities/user/user-mapper";
-import { generateSignature } from "../../utils/generate-signature";
+import { generateSignature } from "@rk-org/shared";
 
 @injectable()
 export class FindUserUseCase {
@@ -40,13 +40,10 @@ export class FindUserUseCase {
 					throw new Error("Error trying to convert date of timestamp");
 				}
 				const signature = generateSignature(this.userSecretKey, timeStampReceived)
-				console.log('assinatura gerada:' + signature.signature)
-				console.log('===============================================')
-				console.log('assinatura recebida:' + data.receivedSignature)
 
-				if(signature == data.receivedSignature)
-					console.log('Equal signatures')
+				if(signature.signature == data.receivedSignature){
 					return user;
+				}
 			}
 
 			return UserMapper.toDTO(user);

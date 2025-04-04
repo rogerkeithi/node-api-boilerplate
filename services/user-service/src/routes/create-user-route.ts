@@ -1,7 +1,7 @@
 import express from "express";
 import CreateUserController from "../controllers/create-user-controller";
-import { asyncWrapper } from "../utils/async-wrapper";
 import { container } from "../config/inversify-container";
+import { asyncWrapper } from "@rk-org/shared";
 
 const createUserRoute = express.Router();
 const createUserController = container.get<CreateUserController>(CreateUserController);
@@ -10,7 +10,7 @@ const createUserController = container.get<CreateUserController>(CreateUserContr
  * @swagger
  * /user:
  *   post:
- *     summary: Criar usuário
+ *     summary: Create user
  *     requestBody:
  *       required: true
  *       content:
@@ -20,10 +20,10 @@ const createUserController = container.get<CreateUserController>(CreateUserContr
  *             properties:
  *               name:
  *                 type: string
- *                 example: "João Silva"
+ *                 example: "User Name"
  *               email:
  *                 type: string
- *                 example: "joao.silva@email.com"
+ *                 example: "email.email@email.com"
  *               role:
  *                 type: string
  *                 enum:
@@ -33,12 +33,14 @@ const createUserController = container.get<CreateUserController>(CreateUserContr
  *                 example: "USER"
  *               password:
  *                 type: string
- *                 example: "******"
+ *                 example: ""
  *     responses:
  *       201:
- *         description: Cria um novo usuário
+ *         description: Create a new user
  *       400:
- *         description: Dados inválidos ou erro de validação
+ *         description: Invalid user informations
+ *       500:
+ *         description: Internal server error
  */
 createUserRoute.post("/user", asyncWrapper(createUserController.execute.bind(createUserController)));
 

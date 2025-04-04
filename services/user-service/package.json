@@ -9,7 +9,7 @@
     "prod": "node dist/server.js"
   },
   "author": "Roger Keithi",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.777.0",
+    "@rk-org/shared": "file:../shared",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

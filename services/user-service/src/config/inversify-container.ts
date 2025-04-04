@@ -5,12 +5,10 @@ import { CreateUserUseCase } from "../use-cases/create-user/create-user-use-case
 import CreateUserController from "../controllers/create-user-controller";
 import FindUserController from "../controllers/find-user-controller";
 import { FindUserUseCase } from "../use-cases/find-user/find-user-use-case";
-import { IDatabase } from "../infra/database/config/interfaces/database-interface";
+import { IDatabase, IQueueService, IWorkerService } from "@rk-org/shared";
 import { MongoDatabase } from "../infra/database/config/mongo-conn";
-import { SQSService } from "../infra/queue/sqs-config";
-import { IQueueService } from "../infra/queue/interfaces/queue-interface";
 import { SQSWorker } from "../infra/queue/sqs-worker";
-import { IWorkerService } from "../infra/queue/interfaces/worker-interface";
+import { SQSService } from "../infra/queue/config/sqs-config";
 
 const container = new Container();
 
@@ -26,11 +24,13 @@ container.bind<FindUserUseCase>(FindUserUseCase).toSelf();
 container.bind<IUserRepository>("IUserRepository").to(UserRepository);
 container.bind<IUserReadRepository>("IUserReadRepository").to(UserRepository);
 
-//Services
-container.bind<IQueueService>("IQueueService").to(SQSService);
-container.bind<IWorkerService>("IWorkerService").to(SQSWorker);
-
-//Databases
+//Database
 container.bind<IDatabase>("IDatabase").to(MongoDatabase);
+
+//Database
+container.bind<IQueueService>("IQueueService").to(SQSService);
+
+//Worker
+container.bind<IWorkerService>("IWorkerService").to(SQSWorker);
 
 export { container };

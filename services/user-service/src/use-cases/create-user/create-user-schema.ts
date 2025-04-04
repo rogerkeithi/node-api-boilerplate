@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Roles } from "../../enums/role-enum";
+import { Roles } from "@rk-org/shared";
 
 export const CreateUserSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters long"),

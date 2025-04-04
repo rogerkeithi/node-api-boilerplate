@@ -1,12 +1,10 @@
 import { Container } from "inversify";
 import { LoginUseCase } from "../use-cases/login/login-use-case";
 import LoginController from "../controllers/login-controller";
-import { IQueueService } from "../infra/queue/interfaces/queue-interface";
-import { SQSService } from "../infra/queue/sqs-config";
-import { SQSWorker } from "../infra/queue/sqs-worker";
-import { IWorkerService } from "../infra/queue/interfaces/worker-interface";
 import { IUserService } from "../infra/services/interfaces/user-service-interface";
 import { UserService } from "../infra/services/user-service";
+import { IQueueService } from "@rk-org/shared";
+import { SQSService } from "../infra/queue/config/sqs-config";
 
 const container = new Container();
 
@@ -17,8 +15,9 @@ container.bind<LoginController>(LoginController).toSelf();
 container.bind<LoginUseCase>(LoginUseCase).toSelf();
 
 //Services
-container.bind<IQueueService>("IQueueService").to(SQSService);
-container.bind<IWorkerService>("IWorkerService").to(SQSWorker);
 container.bind<IUserService>("IUserService").to(UserService);
+
+//Queue
+container.bind<IQueueService>("IQueueService").to(SQSService);
 
 export { container };

@@ -1,5 +1,5 @@
 import { SQSClient, SendMessageCommand, ReceiveMessageCommand, DeleteMessageCommand } from "@aws-sdk/client-sqs";
-import { IQueueService } from "./interfaces/queue-interface";
+import { IQueueService } from "@rk-org/shared";
 import { injectable } from "inversify";
 
 @injectable()

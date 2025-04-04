@@ -3,7 +3,7 @@ import { User } from "../../entities/user/user";
 import { IUserRepository } from "../../infra/database/repositories/interfaces/user-repository-interface";
 import { inject, injectable } from "inversify";
 import { UserMapper } from "../../entities/user/user-mapper";
-import { hashPassword } from "../../utils/hash-handler";
+import { hashPassword } from "@rk-org/shared";
 
 @injectable()
 export class CreateUserUseCase {
@@ -11,7 +11,7 @@ export class CreateUserUseCase {
 	async execute(data: CreateUserReq): Promise<CreateUserRes> {
 		const existingUser = await this.userRepository.findOneByFilter({email: data.email});
 		if (existingUser) {
-		  throw new Error("E-mail já está em uso.");
+		  throw new Error("E-mail already in use.");
 		}
 		const hashed = await hashPassword(data.password);
 		const userToCreate = new User(data.name, data.email, data.role, hashed);

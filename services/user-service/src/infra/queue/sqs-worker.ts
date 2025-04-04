@@ -1,14 +1,9 @@
+import { IQueueService, IWorkerService } from "@rk-org/shared";
 import { inject, injectable } from "inversify";
-import { IQueueService } from "./interfaces/queue-interface";
-import { IWorkerService } from "./interfaces/worker-interface";
 
 @injectable()
 export class SQSWorker implements IWorkerService{
   constructor(@inject("IQueueService") private queueService: IQueueService) {}
-
-  async processMessage(message: string): Promise<void> {
-    console.log("Processing message:", message);
-  }
 
   async startWorker(queueUrl: string): Promise<void> {
     console.log("Starting SQS Worker...");
@@ -32,5 +27,8 @@ export class SQSWorker implements IWorkerService{
 
       await new Promise(resolve => setTimeout(resolve, 5000));
     }
+  }
+  private async processMessage(message: string): Promise<void> {
+    console.log("Processing message:", message);
   }
 }

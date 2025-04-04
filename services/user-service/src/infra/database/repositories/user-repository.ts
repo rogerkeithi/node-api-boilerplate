@@ -1,7 +1,9 @@
+import { injectable } from "inversify";
 import { User } from "../../../entities/user/user";
 import { UserDocument, userModel } from "../models/user-model";
 import { IUserRepository } from "./interfaces/user-repository-interface";
 
+@injectable()
 export class UserRepository implements IUserRepository  {
   async create(user: User): Promise<UserDocument> {
     const userDocument = new userModel({

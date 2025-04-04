@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
-import { IDatabase } from "./interfaces/database-interface";
 import { injectable } from "inversify";
+import { IDatabase } from "@rk-org/shared";
 
 @injectable()
 export class MongoDatabase implements IDatabase {
+  private mongoUri = process.env.MONGO_URI;
   async connect(): Promise<void> {
-    const MONGO_URI = process.env.MONGO_URI;
-    if (!MONGO_URI) {
-      throw new Error("MONGO_URI não está definida no ambiente!");
+    if (!this.mongoUri) {
+      throw new Error("Mongo uri not found.");
     }
 
     try {
-      await mongoose.connect(MONGO_URI);
+      await mongoose.connect(this.mongoUri)
       console.log("Conectado ao MongoDB com sucesso!");
     } catch (error) {
       console.error("Erro ao conectar ao MongoDB:", error);

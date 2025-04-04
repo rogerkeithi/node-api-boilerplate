@@ -1,7 +1,7 @@
 import express from "express";
-import { asyncWrapper } from "../utils/async-wrapper";
 import { container } from "../config/inversify-container";
 import LoginController from "../controllers/login-controller";
+import { asyncWrapper } from "@rk-org/shared";
 
 const loginRoute = express.Router();
 const loginController = container.get<LoginController>(LoginController);
@@ -26,9 +26,9 @@ const loginController = container.get<LoginController>(LoginController);
  *                 example: ""
  *     responses:
  *       201:
- *         description: Login realizado com sucesso
+ *         description: Logged in successfully
  *       401:
- *         description: Credenciais incorretas
+ *         description: Incorrect credentials
  */
 loginRoute.post("/login", asyncWrapper(loginController.execute.bind(loginController)));
 

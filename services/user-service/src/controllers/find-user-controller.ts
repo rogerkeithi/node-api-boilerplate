@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { BaseController } from "./base/base-controller";
-import { HttpStatus } from "../enums/http-status-enum";
 import { inject, injectable } from "inversify";
 import { FindUserUseCase } from "../use-cases/find-user/find-user-use-case";
 import { FindUserReq } from "../use-cases/find-user/find-user-dto";
+import { BaseController, HttpStatus } from "@rk-org/shared";
 @injectable()
 export default class FindUserController extends BaseController {
   constructor(@inject(FindUserUseCase) private findUserUseCase: FindUserUseCase) {
