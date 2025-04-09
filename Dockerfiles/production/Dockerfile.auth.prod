@@ -1,0 +1,23 @@
+FROM node:23-alpine
+
+WORKDIR /app
+
+COPY ./services /app
+WORKDIR /app/shared
+RUN npm install && npm run build
+
+WORKDIR /app/auth-service
+COPY ./services/auth-service/package*.json ./
+
+RUN npm install
+RUN npm install /app/shared
+
+WORKDIR /app/auth-service
+
+COPY ./services/auth-service ./
+
+RUN npm run build
+
+EXPOSE 4000
+
+CMD ["node", "dist/server.js"]

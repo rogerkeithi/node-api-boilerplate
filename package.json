@@ -1,0 +1,22 @@
+{
+  "name": "node-api-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate to a typescript node.js microservices project. ",
+  "packageManager": "pnpm@10.8.0",
+  "scripts": {
+    "setup": "pnpm install -F ./services/shared && pnpm -F ./services/shared run build && pnpm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerkeithi/node-api-boilerplate.git"
+  },
+  "author": "Roger Keithi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rogerkeithi/node-api-boilerplate/issues"
+  },
+  "homepage": "https://github.com/rogerkeithi/node-api-boilerplate#readme",
+  "dependencies": {
+    "pnpm": "^10.8.0"
+  }
+}

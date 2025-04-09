@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:23-alpine
 
 WORKDIR /app
 
@@ -16,8 +16,6 @@ WORKDIR /app/user-service
 
 COPY ./services/user-service ./
 
-RUN npm run build
-
 EXPOSE 4000
 
-CMD ["node", "dist/server.js"]
+CMD ["npm", "run", "dev"]

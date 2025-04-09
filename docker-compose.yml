@@ -42,8 +42,11 @@ services:
   user-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Dockerfile-user
+      dockerfile: Dockerfiles/development/Dockerfile.user.dev
     container_name: user_service
+    volumes:
+      - ./services/user-service:/app/user-service
+      - /app/user-service/node_modules
     restart: always
     depends_on:
       localstack:
@@ -70,8 +73,11 @@ services:
   auth-service:
     build:
       context: .
-      dockerfile: Dockerfiles/Dockerfile-auth
+      dockerfile: Dockerfiles/development/Dockerfile.auth.dev
     container_name: auth_service
+    volumes:
+      - ./services/auth-service:/app/auth-service
+      - /app/auth-service/node_modules
     restart: always
     depends_on:
       user-service:

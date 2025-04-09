@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "tsc",
-    "prod": "node dist/server.js"
+    "prod": "node dist/server.js",
+    "dev": "nodemon --legacy-watch src/server.ts"
   },
   "author": "Roger Keithi",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "express": "^4.21.2",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
