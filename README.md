@@ -19,30 +19,20 @@ On that project, we're using docker compose to run our stack locally, so you hav
   cd node-api-boilerplate
 ```
 
+### Setup to develop
+
+Run this command to setup local packages and install all packages of each service:
+
+```bash
+  npm run setup
+```
+
 ### Build and start
 
 ```bash
   docker compose up --build
 ```
 Running this command will rebuild and start all services in our project. 
-
-### [Development] Build shared package 
-
-To fix imports on development stage, you'll need to build the local package that i created for shared code between the services
-
-That's not necessary for production stage.
-
-Access the shared directory:
-
-```bash
-  cd services/shared
-```
-
-Run:
-
-```bash
-  npm run build
-```
 
 ### Swagger
 
