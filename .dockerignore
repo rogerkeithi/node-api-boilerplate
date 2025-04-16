@@ -35,3 +35,11 @@ Thumbs.db
 **/*.test.js
 **/*.spec.js
 coverage
+
+# Terraform local files
+.terraform/
+*.tfstate
+*.tfstate.*
+.crash
+*.tfplan
+.terraform.tfstate.backup
