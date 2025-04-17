@@ -9,6 +9,10 @@
       "experimentalDecorators": true, 
       "emitDecoratorMetadata": true,
       "esModuleInterop": true,
+      "baseUrl": ".",
+      "paths": {
+        "@rk-org/shared": ["../shared/src/index.ts"]
+      }
     },
     "include": ["src", "server.ts"]
   }

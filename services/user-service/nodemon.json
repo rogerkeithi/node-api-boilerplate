@@ -1,0 +1,7 @@
+{
+  "watch": ["src", "../shared/src"],
+  "ext": "ts",
+  "ignore": ["dist"],
+  "exec": "ts-node --project tsconfig.json src/server.ts",
+  "legacyWatch": true
+}

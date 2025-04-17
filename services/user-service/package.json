@@ -7,7 +7,7 @@
     "start": "ts-node src/server.ts",
     "build": "tsc",
     "prod": "node dist/server.js",
-    "dev": "nodemon --legacy-watch src/server.ts"
+    "dev": "nodemon"
   },
   "author": "Roger Keithi",
   "license": "MIT",

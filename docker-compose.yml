@@ -47,6 +47,8 @@ services:
     volumes:
       - ./services/user-service:/app/user-service
       - /app/user-service/node_modules
+      - ./services/shared:/app/shared
+      - /app/shared/node_modules
     restart: always
     depends_on:
       localstack:
@@ -78,6 +80,8 @@ services:
     volumes:
       - ./services/auth-service:/app/auth-service
       - /app/auth-service/node_modules
+      - ./services/shared:/app/shared
+      - /app/shared/node_modules
     restart: always
     depends_on:
       user-service:

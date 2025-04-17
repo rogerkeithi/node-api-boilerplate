@@ -1,20 +1,20 @@
 FROM node:23-alpine
 
+RUN npm install -g ts-node nodemon typescript
+
 WORKDIR /app
 
 COPY ./services /app
+
 WORKDIR /app/shared
-RUN npm install && npm run build
+COPY ./services/shared/package*.json ./
+RUN npm install
 
 WORKDIR /app/auth-service
 COPY ./services/auth-service/package*.json ./
-
 RUN npm install
-RUN npm install /app/shared
 
-WORKDIR /app/auth-service
-
-COPY ./services/auth-service ./
+COPY ./services/auth-service/nodemon.json ./
 
 EXPOSE 4000
 
